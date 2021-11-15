@@ -1,6 +1,7 @@
 package com.example.guessthenumber.controller;
 
 import com.example.guessthenumber.dto.Game;
+import com.example.guessthenumber.dto.Guess;
 import com.example.guessthenumber.dto.Round;
 import com.example.guessthenumber.exception.InvalidGuessNumberException;
 import com.example.guessthenumber.service.ServiceInt;
@@ -32,10 +33,10 @@ public class Controller {
 
 
     @PostMapping("/guess")
-    public Round guess(String guess,int gameId) throws InvalidGuessNumberException {
+    public Round guess(@RequestBody Guess guess) throws InvalidGuessNumberException {
        Round round;
         try {
-            round=service.makeGuess(guess,gameId);
+            round=service.makeGuess(guess.getGuessNumber(),guess.getGameId());
         }catch (InvalidGuessNumberException exp) {
                throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "invalid Guess number", exp);
