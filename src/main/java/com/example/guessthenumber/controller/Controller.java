@@ -39,7 +39,7 @@ public class Controller {
             round=service.makeGuess(guess.getGuessNumber(),guess.getGameId());
         }catch (InvalidGuessNumberException exp) {
                throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "invalid Guess number", exp);
+                    HttpStatus.BAD_REQUEST, "invalid Guess number", exp);
         }
         return round;
     }
