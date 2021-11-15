@@ -5,7 +5,6 @@ import com.example.guessthenumber.dto.Guess;
 import com.example.guessthenumber.dto.Round;
 import com.example.guessthenumber.exception.InvalidGuessNumberException;
 import com.example.guessthenumber.service.ServiceInt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,8 +15,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class Controller {
 
-    @Autowired
+
     ServiceInt service;
+
+    public Controller(ServiceInt service) {
+        this.service = service;
+    }
 
     @GetMapping
     public String helloWorld() {
@@ -33,7 +36,7 @@ public class Controller {
 
 
     @PostMapping("/guess")
-    public Round guess(@RequestBody Guess guess) throws InvalidGuessNumberException {
+    public Round guess(@RequestBody Guess guess)  {
        Round round;
         try {
             round=service.makeGuess(guess.getGuessNumber(),guess.getGameId());
