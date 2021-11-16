@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 public class RoundDaoImp implements RoundDao{
-    @Autowired
+
     JdbcTemplate jdbc;
 
 

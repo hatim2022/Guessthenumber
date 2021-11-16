@@ -17,7 +17,7 @@ import java.util.List;
 
 @Repository
 public class GameDaoImpl implements GameDao{
-    @Autowired
+
     JdbcTemplate jdbc;
 
 
