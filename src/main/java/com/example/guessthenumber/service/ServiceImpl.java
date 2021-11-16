@@ -129,6 +129,9 @@ public class ServiceImpl implements ServiceInt  {
     @Override
     public Game getGameById(int id) {
         Game game=gameDao.getGameById(id);
+        if(game.getStatus().equals(Status.PROGRESS)){
+            game.setAnswer("");
+        }
         game.setRounds(roundDao.getRoundsByGame(game.getId()));
         return game;
 
